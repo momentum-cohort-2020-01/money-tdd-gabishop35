@@ -87,7 +87,10 @@ class Money:
         # if not (isinstance(self, int) and isinstance(other, int)):
             # raise DifferentCurrencyError(Exception)
         new_amount = self.amount + other.amount
-        return Money(new_amount, self.currency)
+        if (self.currency == other.currency):
+            return Money(new_amount, self.currency)
+        else:
+            raise DifferentCurrencyError
 
         # pass
 
@@ -99,7 +102,10 @@ class Money:
         """
 
         new_amount = self.amount - other.amount
-        return Money(new_amount, self.currency)
+        if (self.currency == other.currency):
+            return Money(new_amount, self.currency)
+        else:
+            raise DifferentCurrencyError
         
         pass
 
@@ -107,7 +113,7 @@ class Money:
         """
         Multiply a money object by a number to get a new money object.
         """
-        new_amount = self.amount * multiplier.amount
+        new_amount = self.amount * multiplier
         return Money(new_amount, self.currency)
 
         pass
@@ -117,7 +123,7 @@ class Money:
         Divide a money object by a number to get a new money object.
         """
 
-        new_amount = self.amount / divisor.amount
+        new_amount = self.amount / divisor
         return Money(new_amount, self.currency)
 
         pass
